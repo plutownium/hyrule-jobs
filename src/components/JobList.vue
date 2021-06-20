@@ -22,10 +22,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
+import Vue from "vue";
 import Job from "../types/Job";
 import OrderTerm from "../types/OrderTerm";
 
-export default defineComponent({
+export default Vue.extend({
 	props: {
 		jobs: {
 			required: true,
@@ -36,19 +37,34 @@ export default defineComponent({
 			type: String as PropType<OrderTerm>,
 		},
 	},
-	setup(props) {
-		// console.log("aaaaaa", props.jobs);
-		// const jobs = [...props.jobs] as Job[];
-		// // const x = computed(() => {
-		// // 	console.log("asdfsaf");
-		// // 	// const jobs = [...props.jobs] as Job[];
-		// // 	return jobs.sort((a: Job, b: Job) => {
-		// // 		return a[props.order] > b[props.order] ? 1 : -1;
-		// // 	});
-		// // });
-		// // return { x };
-		// return { jobs };
+	mounted() {
+		this.$root!.$on(
+			"addJob",
+			(title: string, loc: string, salary: number, ft: boolean) => {
+				this.$props.jobs.push({
+					title: title,
+					location: loc,
+					salary: salary,
+					ft: ft,
+					id: Math.random().toString(),
+				});
+			}
+		);
 	},
+	// setup(props) {
+	// 	// console.log("aaaaaa", props.jobs);
+	// 	// const jobs = [...props.jobs] as Job[];
+	// 	// // const x = computed(() => {
+	// 	// // 	console.log("asdfsaf");
+	// 	// // 	// const jobs = [...props.jobs] as Job[];
+	// 	// // 	return jobs.sort((a: Job, b: Job) => {
+	// 	// // 		return a[props.order] > b[props.order] ? 1 : -1;
+	// 	// // 	});
+	// 	// // });
+	// 	// // return { x };
+	// 	// return { jobs };
+
+	// },
 });
 </script>
 

@@ -39,12 +39,44 @@ export default defineComponent({
 			const qualified = res === "true" || res === "false";
 			return qualified;
 		},
+		salaryIsOk: function () {
+			const salary = this.salary as number;
+			return salary > 200;
+		},
+		locationIsGood: function () {
+			const loc = this.location as string;
+			return loc.length > 3;
+		},
+		titleCheck: function () {
+			const title = this.title as string;
+			return title.length > 3;
+		},
 	},
 
 	methods: {
 		addJobToList() {
 			// affirm the inputs are right & add 'em to the main list on the other page
-			console.log("the btn works!", this.$data);
+			if (
+				this.isABool &&
+				this.salaryIsOk &&
+				this.locationIsGood &&
+				this.titleCheck
+			) {
+				console.log("asdding a jobbb");
+				let ft: boolean = true;
+				if (this.ft === "true") {
+					ft = true;
+				} else if (this.ft === "false") {
+					ft = false;
+				}
+				this.$root!.$emit(
+					"addJob",
+					this.title,
+					this.location,
+					this.salary,
+					ft
+				);
+			}
 		},
 	},
 	// todo: make text light up if & only if bool input is "true" or "false" exactly. use a Union type.
