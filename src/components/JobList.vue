@@ -25,8 +25,9 @@ import { computed, defineComponent, PropType } from "vue";
 import Vue from "vue";
 import Job from "../types/Job";
 import OrderTerm from "../types/OrderTerm";
+import { myEventBus, MyEventBusEvents } from "../bus/myEventBus";
 
-export default Vue.extend({
+export default defineComponent({
 	props: {
 		jobs: {
 			required: true,
@@ -37,34 +38,40 @@ export default Vue.extend({
 			type: String as PropType<OrderTerm>,
 		},
 	},
-	mounted() {
-		this.$root!.$on(
-			"addJob",
-			(title: string, loc: string, salary: number, ft: boolean) => {
-				this.$props.jobs.push({
-					title: title,
-					location: loc,
-					salary: salary,
-					ft: ft,
-					id: Math.random().toString(),
-				});
-			}
+	created() {
+		myEventBus.$on(
+			MyEventBusEvents.AddJob,
+			(title: string, loc: string, salary: number, ft: boolean) =>
+				this.addJob(title, loc, salary, ft)
 		);
 	},
-	// setup(props) {
-	// 	// console.log("aaaaaa", props.jobs);
-	// 	// const jobs = [...props.jobs] as Job[];
-	// 	// // const x = computed(() => {
-	// 	// // 	console.log("asdfsaf");
-	// 	// // 	// const jobs = [...props.jobs] as Job[];
-	// 	// // 	return jobs.sort((a: Job, b: Job) => {
-	// 	// // 		return a[props.order] > b[props.order] ? 1 : -1;
-	// 	// // 	});
-	// 	// // });
-	// 	// // return { x };
-	// 	// return { jobs };
-
-	// },
+	methods: {
+		addJob(title: string, loc: string, salary: number, ft: boolean) {
+			// ...
+		},
+	},
+	mounted() {
+		// todo: tell TS to kcik rocks, $root.$on is perfectly fine.
+		// todo: use teh event bus tutorial. teh
+		// const typeScriptIsOverlyStrict = this.$root! as any;
+		// console.log(
+		// 	"adsfadsfdasf3390938903",
+		// 	typeScriptIsOverlyStrict,
+		// 	Object.keys(typeScriptIsOverlyStrict)
+		// );
+		// this.$root.$on(
+		// 	"addJob",
+		// 	(title: string, loc: string, salary: number, ft: boolean) => {
+		// 		this.$props.jobs.push({
+		// 			title: title,
+		// 			location: loc,
+		// 			salary: salary,
+		// 			ft: ft,
+		// 			id: Math.random().toString(),
+		// 		});
+		// 	}
+		// );
+	},
 });
 </script>
 

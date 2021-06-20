@@ -22,6 +22,7 @@
 import { computed, defineComponent, PropType } from "vue";
 import Job from "../types/Job";
 import OrderTerm from "../types/OrderTerm";
+import { myEventBus, MyEventBusEvents } from "../bus/myEventBus";
 
 export default defineComponent({
 	data() {
@@ -69,8 +70,15 @@ export default defineComponent({
 				} else if (this.ft === "false") {
 					ft = false;
 				}
-				this.$root!.$emit(
-					"addJob",
+				// this.$root!.$emit(
+				// 	"addJob",
+				// 	this.title,
+				// 	this.location,
+				// 	this.salary,
+				// 	ft
+				// );
+				myEventBus.$emit(
+					MyEventBusEvents.AddJob,
 					this.title,
 					this.location,
 					this.salary,
