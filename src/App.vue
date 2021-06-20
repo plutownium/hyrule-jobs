@@ -1,20 +1,13 @@
 <template>
 	<div class="app">
 		<!-- <button @click="changeName('zelda')">Click me</button> -->
-		<div>
-			<router-link to="/add">Add Job Page Is Here</router-link>
-		</div>
-		<p>{{ jobs[0].location }} - {{ jobs[0].salary }}</p>
-		<button class="lol" @click="handleClick('title')">
-			Order by title
-		</button>
-		<button class="lol" @click="handleClick('location')">
-			Order by location
-		</button>
-		<button class="lol" @click="handleClick('salary')">
-			Order by salary
-		</button>
-		<JobList :jobs="jobs" :order="order" />
+		<nav>
+			<!-- <router-link to="/add">Add Job Page Is Here</router-link> -->
+			<a @click="ayy()">Goooo</a>
+			<router-link to="/test">FOOOO</router-link>
+		</nav>
+
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -22,11 +15,12 @@
 import { defineComponent, ref } from "vue";
 import Job from "./types/Job";
 import OrderTerm from "./types/OrderTerm";
-import JobList from "./components/JobList.vue";
+
+// todo: make the vue router send me to another page onclick. Specifically the AddJob vue, and then send me back
+// once im done
 
 export default defineComponent({
 	name: "App",
-	components: { JobList },
 	setup() {
 		const jobs = ref<Job[]>([
 			{
@@ -66,6 +60,12 @@ export default defineComponent({
 		};
 
 		return { jobs, handleClick, order };
+	},
+	methods: {
+		ayy() {
+			console.log("asdfasdfds wow it worked");
+			this.$router.push({ path: "add" });
+		},
 	},
 	// data() {
 	// 	return {
