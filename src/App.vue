@@ -1,6 +1,9 @@
 <template>
 	<div class="app">
-		<button @click="changeName('zelda')">Click me</button>
+		<!-- <button @click="changeName('zelda')">Click me</button> -->
+		<div>
+			<router-link to="/add">Add Job Page Is Here</router-link>
+		</div>
 		<p>{{ jobs[0].location }} - {{ jobs[0].salary }}</p>
 		<button class="lol" @click="handleClick('title')">
 			Order by title

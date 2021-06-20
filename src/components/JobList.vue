@@ -37,17 +37,17 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		console.log("aaaaaa", props.jobs);
-		const jobs = [...props.jobs] as Job[];
-		// const x = computed(() => {
-		// 	console.log("asdfsaf");
-		// 	// const jobs = [...props.jobs] as Job[];
-		// 	return jobs.sort((a: Job, b: Job) => {
-		// 		return a[props.order] > b[props.order] ? 1 : -1;
-		// 	});
-		// });
-		// return { x };
-		return { jobs };
+		// console.log("aaaaaa", props.jobs);
+		// const jobs = [...props.jobs] as Job[];
+		// // const x = computed(() => {
+		// // 	console.log("asdfsaf");
+		// // 	// const jobs = [...props.jobs] as Job[];
+		// // 	return jobs.sort((a: Job, b: Job) => {
+		// // 		return a[props.order] > b[props.order] ? 1 : -1;
+		// // 	});
+		// // });
+		// // return { x };
+		// return { jobs };
 	},
 });
 </script>
