@@ -29,10 +29,18 @@ export default defineComponent({
 			title: "",
 			location: "",
 			salary: 0,
-			ft: false,
-			isABool: false,
+			ft: "",
+			// isABool: false,
 		};
 	},
+	computed: {
+		isABool: function () {
+			const res = this.ft as string;
+			const qualified = res === "true" || res === "false";
+			return qualified;
+		},
+	},
+
 	methods: {
 		addJobToList() {
 			// affirm the inputs are right & add 'em to the main list on the other page
@@ -50,5 +58,15 @@ export default defineComponent({
 	background-color: #a0bbde;
 	margin: 10px 20px 10px 20px;
 	padding: 5px;
+}
+
+.redTextActive {
+	color: red;
+	font-size: 1.2em;
+}
+
+.inactiveShadow {
+	text-shadow: 2px 4px #3388;
+	font-size: 2em;
 }
 </style>

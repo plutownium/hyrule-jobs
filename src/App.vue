@@ -21,52 +21,7 @@ import OrderTerm from "./types/OrderTerm";
 
 export default defineComponent({
 	name: "App",
-	setup() {
-		const jobs = ref<Job[]>([
-			{
-				title: "bartender",
-				location: "vancouver",
-				salary: 35,
-				id: "jd290dfsIAJSD",
-				ft: true,
-			},
-			{
-				title: "priest",
-				location: "Calgary",
-				salary: 90,
-				id: "ffffffff3f3f3f3f3",
-				ft: true,
-			},
-			{
-				title: "Farmworker",
-				location: "Hyrule",
-				salary: 40000,
-				id: "fj0009i0i0k0",
-				ft: true,
-			},
-			{
-				title: "potus",
-				location: "USA",
-				salary: 999999,
-				id: "leet0k0",
-				ft: true,
-			},
-		]);
-
-		const order = ref<OrderTerm>("title");
-
-		const handleClick = (term: OrderTerm) => {
-			order.value = term;
-		};
-
-		return { jobs, handleClick, order };
-	},
-	methods: {
-		ayy() {
-			console.log("asdfasdfds wow it worked");
-			this.$router.push({ path: "add" });
-		},
-	},
+	
 	// data() {
 	// 	return {
 	// 		name: "link",
