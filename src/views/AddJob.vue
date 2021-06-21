@@ -79,6 +79,7 @@ export default defineComponent({
 				// 	this.salary,
 				// 	ft
 				// );
+				// https://stackoverflow.com/questions/66537320/vue-3-event-bus-with-composition-api
 				const emitter = inject("emitter") as any; // Inject `emitter`
 				// const mymethod = () => {
 				emitter.emit(
