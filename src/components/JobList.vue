@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType, inject } from "vue";
 import Vue from "vue";
 import Job from "../types/Job";
 import OrderTerm from "../types/OrderTerm";
@@ -47,7 +47,13 @@ export default defineComponent({
 	},
 	methods: {
 		addJob(title: string, loc: string, salary: number, ft: boolean) {
-			// ...
+			// any component - listen for the event
+			const emitter = inject("emitter") as any; // Inject `emitter`
+			// https://stackoverflow.com/questions/66537320/vue-3-event-bus-with-composition-api
+			emitter.on("myevent", (value) => {
+				// *Listen* for event
+				console.log("myevent received!", `value: ${value}`);
+			});
 		},
 	},
 	mounted() {

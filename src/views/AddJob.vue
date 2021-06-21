@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType, inject } from "vue";
 import Job from "../types/Job";
 import OrderTerm from "../types/OrderTerm";
 import { myEventBus, MyEventBusEvents } from "../bus/myEventBus";
@@ -55,6 +55,8 @@ export default defineComponent({
 	},
 
 	methods: {
+		// test1: will inject work in this method?
+		// test2: will I have to use setup()?
 		addJobToList() {
 			// affirm the inputs are right & add 'em to the main list on the other page
 			if (
@@ -77,13 +79,23 @@ export default defineComponent({
 				// 	this.salary,
 				// 	ft
 				// );
-				myEventBus.$emit(
-					MyEventBusEvents.AddJob,
+				const emitter = inject("emitter") as any; // Inject `emitter`
+				// const mymethod = () => {
+				emitter.emit(
+					"addJob",
 					this.title,
 					this.location,
 					this.salary,
 					ft
 				);
+				// };
+				// myEventBus.$emit(
+				// 	MyEventBusEvents.AddJob,
+				// 	this.title,
+				// 	this.location,
+				// 	this.salary,
+				// 	ft
+				// );
 			}
 		},
 	},
